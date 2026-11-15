@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cazey · 4 style samples for Reunion Media Group</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Four free style samples with Cazey's deck: two interactive PDFs and two 3D scroll websites.">
+<meta property="og:title" content="Cazey · 4 style samples for Reunion">
+<meta property="og:description" content="A and B: interactive PDF. C and D: 3D scroll websites. Pick a direction.">
+<meta property="og:image" content="https://leonides600.github.io/reunion-samples/assets/og.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#050505">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#FEC2FE;--fg:#f5f2f5;--mute:#a19ba3;--line:rgba(255,255,255,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#050505;color:var(--fg);font-family:Poppins,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+body{min-height:100vh;background:radial-gradient(1200px 600px at 80% -10%,rgba(254,194,254,.12),transparent 60%),#050505}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:clamp(22px,5vw,56px) clamp(16px,4vw,40px) 40px}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{height:22px;width:auto;display:block}
+.brand span{font-size:12px;letter-spacing:.16em;color:var(--mute)}
+.lv{font-weight:600;color:var(--fg)}.lv i{font-style:normal;color:#7c777d}
+.tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--pink);font-weight:600}
+h1{font-size:clamp(34px,6vw,72px);line-height:.98;letter-spacing:-.03em;font-weight:800;margin:clamp(34px,6vw,64px) 0 16px}
+h1 em{font-style:normal;color:var(--pink)}
+.lead{max-width:640px;font-size:clamp(14px,1.6vw,17px);line-height:1.6;color:#d6d0d7}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.2vw,26px);margin-top:clamp(28px,5vw,52px)}
+.card{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:linear-gradient(180deg,rgba(20,18,21,.9),rgba(10,9,11,.9));display:flex;flex-direction:column}
+.shot{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:#111}
+.shot .main{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.card:hover .shot .main{transform:scale(1.035)}
+.letter{position:absolute;left:14px;top:14px;width:44px;height:44px;border-radius:999px;display:grid;place-items:center;font-weight:800;font-size:18px;background:#050505;color:var(--fg);border:1px solid rgba(255,255,255,.25)}
+.kind{position:absolute;right:14px;top:14px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:7px 12px;border-radius:999px;background:rgba(5,5,5,.78);border:1px solid rgba(254,194,254,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.shot .thumb{position:absolute;right:12px;bottom:12px;width:34%;height:auto;border-radius:10px;border:2px solid rgba(255,255,255,.7);box-shadow:0 10px 30px rgba(0,0,0,.5);display:block}
+.body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.body h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
+.body p{font-size:13.5px;line-height:1.6;color:#c9c3ca;flex:1}
+.go{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:6px;padding:13px 18px;border-radius:999px;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);transition:background .25s,border-color .25s,color .25s}
+.go:hover,.go:focus-visible{border-color:var(--pink);background:rgba(254,194,254,.08);outline:none}
+.go.web{background:var(--pink);color:#140914;border-color:var(--pink)}
+.go.web:hover{background:#fff;border-color:#fff}
+.pdf{margin-top:clamp(16px,2.4vw,24px);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border:1px dashed rgba(254,194,254,.35);border-radius:22px;padding:18px 22px}
+.pdf p{font-size:13.5px;color:#c9c3ca;line-height:1.5}
+.pdf b{color:var(--fg)}
+.note{margin-top:clamp(30px,5vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:20px;border-top:1px solid var(--line);padding-top:24px}
+.note h3{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:8px}
+.note p{font-size:13.5px;line-height:1.6;color:#c9c3ca}
+footer{margin-top:36px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11.5px;color:#8d878e;letter-spacing:.04em}
+@media (max-width:760px){
+  .grid{grid-template-columns:1fr}
+  .note{grid-template-columns:1fr}
+  .brand span{display:none}
+  header .tag{font-size:9px}
+  .go{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><img src="assets/reunion_logo.png" alt="reunion."><span>×</span><span class="lv">LeoVisual<i>.nl</i></span></div>
+    <p class="tag">Style samples</p>
+  </header>
+
+  <h1>Cazey's deck,<br><em>4 ways.</em></h1>
+  <p class="lead">Four free samples built with the content of Cazey's deck, to show what we can do for the Reunion roster. Pick the direction you like, or tell me if you'd prefer a different style.</p>
+
+  <section class="grid">
+    <article class="card">
+      <a class="shot" href="assets/sample_A.jpg" target="_blank" rel="noopener" aria-label="Open sample A"><img class="main" src="assets/sample_A.jpg" alt="Sample A: Cazey's pink cover with the Reunion signature" loading="lazy"><span class="letter">A</span><span class="kind">Interactive PDF</span></a>
+      <div class="body">
+        <h2>Same deck, Reunion signature</h2>
+        <p>Cazey's current deck and look, with the Reunion signature and your management contact on every deck.</p>
+        <a class="go" href="assets/Reunion_samples_A_B_by_LeoVisual.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="shot" href="assets/sample_B.jpg" target="_blank" rel="noopener" aria-label="Open sample B"><img class="main" src="assets/sample_B.jpg" alt="Sample B: Cazey in the Reunion black and chrome template" loading="lazy"><span class="letter">B</span><span class="kind">Interactive PDF</span><img class="thumb" src="assets/sample_B_roster.jpg" alt="Reunion roster page" loading="lazy"></a>
+      <div class="body">
+        <h2>One Reunion template</h2>
+        <p>A full redesign in one Reunion template, so the whole roster looks like one team. Includes a roster page where each artist opens their own deck.</p>
+        <a class="go" href="assets/Reunion_samples_A_B_by_LeoVisual.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="shot" href="c/" aria-label="Open sample C"><img class="main" src="assets/poster_C.jpg" alt="Sample C: 3D scroll website in the Reunion black and chrome style" loading="lazy"><span class="letter">C</span><span class="kind">3D website</span></a>
+      <div class="body">
+        <h2>3D web · Reunion style</h2>
+        <p>Cazey's full deck as a 3D scroll website. You travel through the chrome Reunion pill, chapter by chapter: bio, releases, DJ sets, live set and contact.</p>
+        <a class="go web" href="c/">Open 3D web →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="shot" href="d/" aria-label="Open sample D"><img class="main" src="assets/poster_D.jpg" alt="Sample D: 3D scroll website in Cazey's pink style" loading="lazy"><span class="letter">D</span><span class="kind">3D website</span></a>
+      <div class="body">
+        <h2>3D web · Cazey's pink</h2>
+        <p>The same 3D website in Cazey's own pink look, with the black Reunion signature, like sample A.</p>
+        <a class="go web" href="d/">Open 3D web →</a>
+      </div>
+    </article>
+  </section>
+
+  <div class="pdf">
+    <p><b>A + B in one interactive PDF</b> (3 pages, clickable links): Cazey in option A, Cazey in option B and the Reunion roster page.</p>
+    <a class="go" href="assets/Reunion_samples_A_B_by_LeoVisual.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+  </div>
+
+  <section class="note">
+    <div><h3>How to view</h3><p>C and D work on phone and laptop: just scroll. Most elements are clickable (Spotify, sets, Instagram, contact).</p></div>
+    <div><h3>Just samples</h3><p>All content comes from Cazey's deck. They are style samples, not final designs: the final version is built around what you choose.</p></div>
+  </section>
+
+  <footer><span>Samples by <span class="lv">LeoVisual<i>.nl</i></span> for Reunion Media Group</span><span>Content: Cazey · @prodbycazey</span></footer>
+</div>
+</body>
+</html>

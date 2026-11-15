@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="d">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cazey · Reunion Media Group — Sample D · 3D web (Cazey pink)</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Cazey — music producer & DJ. Interactive deck, Reunion Media Group version.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#FEC2FE;--ink:#050505;--fg:#f5f2f5;--mute:#a19ba3;--line:rgba(255,255,255,.13);--bg:#050505;--accent:#FEC2FE;--accentInk:#140914;--card:linear-gradient(180deg,rgba(18,16,19,.78),rgba(10,9,11,.72));--shadow:0 30px 80px rgba(0,0,0,.45);--hover:rgba(254,194,254,.1);--barBg:rgba(255,255,255,.06);--hoverBig:#fff;--hoverBigInk:#140914;--body:#d9d4da}
+html[data-theme="d"]{--body:#2a1a2b;--fg:#140914;--mute:#6e5470;--line:rgba(20,9,20,.16);--bg:#FEC2FE;--accent:#140914;--accentInk:#FEC2FE;--card:linear-gradient(180deg,rgba(255,255,255,.66),rgba(255,240,255,.52));--shadow:0 30px 70px rgba(90,0,90,.14);--hover:rgba(20,9,20,.07);--barBg:rgba(20,9,20,.1);--hoverBig:#fff;--hoverBigInk:#140914}
+html[data-theme="d"] .top img{background:#0b0b0c;padding:8px 16px;border-radius:999px;box-sizing:content-box;height:20px}
+html[data-theme="d"] .foot .lv span{color:#8a748c}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--fg);font-family:Poppins,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+a{color:inherit}
+#gl{position:fixed;inset:0;width:100vw;height:100vh;height:100lvh;display:block;z-index:0;touch-action:pan-y}
+#track{height:1150vh;position:relative;z-index:-1}
+body.render #track{display:none}
+
+/* top bar */
+.top{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(18px,4vw,48px);pointer-events:none}
+.top img{height:24px;width:auto;display:block;opacity:.95}
+.top .meta{text-align:right;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);line-height:1.6}
+.top .meta b{color:var(--accent);font-weight:600}
+.bar{position:fixed;left:0;right:0;bottom:0;height:2px;background:var(--barBg);z-index:20}
+.bar i{display:block;height:100%;width:100%;background:var(--accent);transform-origin:0 50%;transform:scaleX(0)}
+
+/* cards */
+.card{position:fixed;z-index:10;left:clamp(20px,5.5vw,84px);top:50%;width:min(430px,35vw);transform:translateY(-50%);opacity:0;visibility:hidden;
+  background:var(--card);border:1px solid var(--line);border-radius:26px;padding:30px 30px 28px;
+  backdrop-filter:blur(14px) saturate(1.1);-webkit-backdrop-filter:blur(14px) saturate(1.1);box-shadow:var(--shadow)}
+.card.center{left:50%;top:auto;bottom:clamp(26px,6vh,64px);width:min(760px,92vw);transform:translateX(-50%);text-align:center;background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px}
+.card h2{font-size:clamp(26px,2.5vw,36px);font-weight:700;line-height:1.08;letter-spacing:-.01em;margin-bottom:14px;text-transform:uppercase}
+.display{font-size:clamp(54px,6vw,92px)!important;letter-spacing:-.03em!important;text-transform:lowercase!important;line-height:.9!important}
+.note{font-size:13px;line-height:1.6;color:var(--mute);margin-top:14px}
+.hint{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg);margin-top:18px;display:flex;align-items:center;gap:10px}
+.center .hint{justify-content:center}
+.hint .ln{display:inline-block;width:1px;height:26px;background:linear-gradient(var(--accent),transparent);animation:drip 1.8s ease-in-out infinite}
+@keyframes drip{0%{transform:scaleY(.2);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(.2);transform-origin:bottom}}
+.presents{font-weight:300;font-size:clamp(15px,1.4vw,19px);letter-spacing:.5em;text-transform:lowercase;color:var(--fg);margin:0}
+.foot{font-size:11px;letter-spacing:.08em;color:var(--mute);margin-top:22px;display:flex;justify-content:center;flex-wrap:wrap;gap:6px 18px}
+.foot .lv{color:var(--fg)} .foot .lv span{color:#777}
+.name{text-transform:none!important}
+.name .ipa{font-weight:300;color:var(--mute);font-size:.62em;letter-spacing:0}
+.role{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:-6px 0 14px}
+.body{font-size:14px;line-height:1.66;color:var(--body)}
+.tracks,.sets{list-style:none;display:grid;gap:10px;margin-top:4px}
+.tracks a,.sets a,.btn{display:flex;align-items:center;justify-content:space-between;gap:14px;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:12px 18px;transition:background .25s,border-color .25s}
+.tracks a:hover,.sets a:hover,.btn:hover,.tracks a:focus-visible,.sets a:focus-visible,.btn:focus-visible{background:var(--hover);border-color:var(--accent);outline:none}
+.tracks b,.sets b{font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase}
+.tracks small{display:block;font-size:11px;line-height:1.45;color:var(--mute);margin-top:3px;text-transform:none;letter-spacing:0;font-weight:400}
+.tracks a{border-radius:22px;align-items:center}
+.go{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);white-space:nowrap;font-weight:600}
+.sets span{display:block;font-size:12px;color:var(--mute);margin-top:2px}
+.btn{justify-content:center;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.btn.big{padding:18px 26px;font-size:15px;background:var(--accent);color:var(--accentInk);border-color:var(--accent)}
+.btn.big:hover{background:var(--hoverBig);border-color:var(--hoverBig);color:var(--hoverBigInk)}
+.stack{display:grid;gap:10px;margin-top:6px}
+.closing .row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.closing .row .btn{min-width:200px}
+.closing .lbl{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);margin-top:18px}
+.closing .mail{font-size:15px;font-weight:600;margin-top:6px}
+.closing .mail a{text-decoration:none;border-bottom:1px solid var(--accent)}
+.soc{display:flex;justify-content:center;gap:18px;margin-top:6px;font-size:14px;font-weight:600}
+.soc a{text-decoration:none;opacity:.9}.soc a:hover{color:var(--accent)}
+.card.mini{width:auto;padding:14px 20px 12px;border-radius:999px}.card.mini .eyebrow{margin:0}
+
+/* projected labels */
+#labels{position:fixed;inset:0;z-index:5;pointer-events:none}
+.lb{position:absolute;left:0;top:0;opacity:0;visibility:hidden;white-space:nowrap;will-change:transform}
+.chip{font-size:12px;font-weight:500;padding:7px 13px;border-radius:999px;background:rgba(10,9,11,.72);border:1px solid rgba(254,194,254,.45);color:#f5f2f5;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.chip.h{background:var(--accent);color:var(--accentInk);font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase;border-color:var(--accent)}
+.chip.w{border-color:rgba(255,255,255,.35)}
+a.tag{pointer-events:auto;text-decoration:none;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px;border-radius:999px;background:rgba(5,5,5,.7);border:1px solid rgba(254,194,254,.6);color:#f5f2f5;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+a.tag:hover,a.tag:focus-visible{background:#FEC2FE;color:#140914;outline:none}
+a.tag.big{font-size:13px;padding:12px 20px;background:var(--accent);color:var(--accentInk);border-color:var(--accent)}
+
+  .chipblock{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;width:340px;white-space:normal}
+#loader{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:var(--bg);transition:opacity .8s}
+#loader i{width:120px;height:52px;border-radius:999px;border:2px solid var(--fg);box-shadow:inset 0 0 12px rgba(255,255,255,.25),0 0 18px rgba(255,255,255,.12);animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(.92);opacity:.55}}
+#err{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:none;background:#2a0b0b;color:#ffd6d6;border:1px solid #a33;border-radius:12px;padding:12px 14px;font:13px/1.4 ui-monospace,monospace}
+
+.card{max-height:calc(100vh - 110px);overflow:auto;scrollbar-width:none}
+@media (max-width:759px){
+  .top{padding:14px 16px}
+  .top img{height:18px}
+  .top .meta{font-size:9.5px}
+  .card{left:12px;right:12px;width:auto;top:auto;bottom:14px;transform:none;padding:20px 20px 18px;border-radius:22px;max-height:47vh;overflow:hidden}
+  .card.center{left:12px;right:12px;width:auto;bottom:22px;transform:none}
+}
+html.mob .card{left:0;right:0;margin:0 auto;width:min(600px,calc(100% - 24px));top:auto;bottom:14px;transform:none;max-height:47vh;overflow:hidden}
+html.mob .card.center{bottom:22px;width:min(720px,calc(100% - 24px))}
+html.mob .card.mini{width:max-content}
+@media (max-width:759px){
+  .card h2{font-size:22px;margin-bottom:10px}
+  .display{font-size:52px!important}
+  .body{font-size:12.5px;line-height:1.55}
+  .eyebrow{margin-bottom:9px;font-size:10px}
+  .tracks a,.sets a{padding:9px 14px}
+  .tracks small{font-size:10.5px}
+  .tracks,.sets{gap:7px}
+  .chip{font-size:10.5px;padding:5px 10px}
+  .chip.h{font-size:9px}
+  .closing .row .btn{min-width:0;flex:1;white-space:nowrap;letter-spacing:.08em}
+  .btn{padding:11px 12px;font-size:12px}
+  .btn.big{padding:15px 18px;font-size:14px}
+  .foot{margin-top:14px;font-size:10px}
+  a.tag{font-size:10px;padding:6px 11px}
+}
+@media (prefers-reduced-motion:reduce){.hint .ln,#loader i{animation:none}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js"></script>
+<script>window.THEME = {"name": "d", "assets": "../assets/", "bg": "#FEC2FE", "fogNear": 9.0, "fogFar": 21.0, "tone": "none", "heroFill": true, "glow": "255,255,255", "glowOp": 0.55, "dust": "#ffffff", "dustOp": 0.45, "deck": "#161416", "mixer": "#211d22", "expA": [0.99, 0.62, 0.99], "expB": [0.03, 0.0, 0.04], "hemi": 1.5};</script>
+<script type="importmap">{"imports":{
+  "three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"}}</script>
+</head>
+<body>
+<header class="top">
+  <img src="../assets/reunion_logo.png" alt="reunion.">
+  <div class="meta"><div>Cazey · Music prod. &amp; DJ</div><div><b id="chn">00</b> / 08 · <span id="chl">Reunion presents</span></div></div>
+</header>
+<div class="bar"><i id="barfill"></i></div>
+<canvas id="gl" aria-label="Interactive 3D deck"></canvas>
+<div id="labels"></div>
+
+<!-- 0 · Reunion presents -->
+<section data-lenis-prevent class="card center" data-i="0">
+  <p class="presents">presents</p>
+  <p class="hint"><span class="ln"></span>Scroll to enter</p>
+  <p class="foot"><span>@reunionmedia.co</span><span>Est. 2026</span><span>reunionmediagroup.com</span></p>
+</section>
+
+<!-- 1 · Cover -->
+<section data-lenis-prevent class="card" data-i="1">
+  <p class="eyebrow">01 · Cover</p>
+  <h2 class="display">cazey</h2>
+  <p class="note">This is an interactive deck. Most images and elements are clickable. Click them to explore more information.</p>
+  <p class="hint"><span class="ln"></span>Scroll to explore</p>
+</section>
+
+<!-- 2 · Bio -->
+<section data-lenis-prevent class="card" data-i="2">
+  <p class="eyebrow">02 · Bio</p>
+  <h2 class="name">Cazey <span class="ipa">(ˈkeɪsi)</span></h2>
+  <p class="role">Music prod. &amp; DJ</p>
+  <p class="body">Cazey is an Italian music producer and DJ based in Milan, working across music production, beatmaking, sampling, sound design, audio engineering, and mixing. Her approach is deeply collaborative, working closely with artists to shape their sound and turn ideas into distinctive, forward-thinking records. As a DJ and Artist DJ, she brings the same musical identity and instinct to the stage curating dynamic sets, performing independently, and supporting artists throughout their live shows as artist DJ.</p>
+</section>
+
+<!-- 3 · Production references -->
+<section data-lenis-prevent class="card" data-i="3">
+  <p class="eyebrow">03 · Production references</p>
+  <h2>Production references</h2>
+  <ul class="tracks">
+    <li><a href="https://open.spotify.com/intl-de/track/7cZH5xrdkxOqBSAbygeix0" target="_blank" rel="noopener"><span><b>I'm Ready</b><small>Sync deal with Warner Chappell for Women's Basketball World Cup Germany 2026</small></span><span class="go">Spotify ↗</span></a></li>
+    <li><a href="https://open.spotify.com/intl-de/track/62FvBsjcQbZTZdHm2TPH2r" target="_blank" rel="noopener"><b>Maka mit Lipton</b><span class="go">Spotify ↗</span></a></li>
+    <li><a href="https://open.spotify.com/intl-de/track/1VzFf43TrhqVgFTlSFjLJS" target="_blank" rel="noopener"><b>Dolce &amp; Gabbana</b><span class="go">Spotify ↗</span></a></li>
+  </ul>
+</section>
+
+<!-- 4 · Gallery -->
+<section data-lenis-prevent class="card mini" data-i="4">
+  <p class="eyebrow">04 · Gallery</p>
+</section>
+
+<!-- 5 · DJ sets -->
+<section data-lenis-prevent class="card" data-i="5">
+  <p class="eyebrow">05 · DJ sets</p>
+  <h2>DJ sets</h2>
+  <ul class="sets">
+    <li><a href="https://www.instagram.com/splashfestival/" target="_blank" rel="noopener"><span><b>Splash Festival</b><span>Germany · Jul 2025</span></span><span class="go">↗</span></a></li>
+    <li><a href="https://www.instagram.com/vicinity_de/" target="_blank" rel="noopener"><span><b>Vicinity Pop-Up</b><span>Italy · Apr 2026</span></span><span class="go">↗</span></a></li>
+    <li><a href="https://www.instagram.com/mtvgermany" target="_blank" rel="noopener"><span><b>MTV Party</b><span>Germany · Sep 2025</span></span><span class="go">↗</span></a></li>
+  </ul>
+</section>
+
+<!-- 6 · Experience -->
+<section data-lenis-prevent class="card" data-i="6">
+  <p class="eyebrow">06 · Live</p>
+  <h2>Experience</h2>
+  <div class="stack">
+    <a class="btn" href="https://www.instagram.com/reel/DMDp2OrosUx/" target="_blank" rel="noopener">Tap to see Splash experience ↗</a>
+    <a class="btn" href="https://www.instagram.com/reel/DXuNi9TCP6k/" target="_blank" rel="noopener">Tap to see Vicinity experience ↗</a>
+  </div>
+</section>
+
+<!-- 7 · Play set -->
+<section data-lenis-prevent class="card" data-i="7">
+  <p class="eyebrow">07 · DJ set</p>
+  <h2>Hear the set</h2>
+  <div class="stack"><a class="btn big" href="https://untitled.stream/library/project/GNCYf44wZF8Yb3Lrtpuew" target="_blank" rel="noopener">▶ Tap to play set</a></div>
+</section>
+
+<!-- 8 · Closing -->
+<section data-lenis-prevent class="card center closing" data-i="8">
+  <p class="eyebrow">Represented by Reunion Media Group</p>
+  <div class="row">
+    <a class="btn big" href="https://open.spotify.com/playlist/4NiX34zioAJf5HgUuOybVC" target="_blank" rel="noopener">Prod by Cazey ↗</a>
+    <a class="btn" href="https://untitled.stream/library/project/mEDBiJ7rsq7qL6Yyy8X4w" target="_blank" rel="noopener">Beats by Cazey ↗</a>
+  </div>
+  <p class="lbl">Socials</p>
+  <p class="soc"><a href="https://www.instagram.com/prodbycazey/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.tiktok.com/@prodbycazey" target="_blank" rel="noopener">TikTok ↗</a></p>
+  <p class="lbl">Contact · Management</p>
+  <p class="mail"><a href="mailto:alex@reunionmediagroup.com">alex@reunionmediagroup.com</a></p>
+  <p class="foot"><span>@reunionmedia.co</span><span>Est. 2026</span><span>reunionmediagroup.com</span><span class="lv">Demo by LeoVisual<span>.nl</span></span></p>
+</section>
+
+<div id="track"></div>
+<div id="loader"><i></i></div>
+<div id="err" role="alert"></div>
+
+<script type="module">
+import * as THREE from 'three';
+
+/* ---------- errors are always visible ---------- */
+const errBox = document.getElementById('err');
+const fail = m => { errBox.textContent = '⚠ ' + m; errBox.style.display = 'block'; };
+addEventListener('error', e => fail(e.message || 'Script error'));
+addEventListener('unhandledrejection', e => fail(String((e.reason && e.reason.message) || e.reason)));
+
+const TH = window.THEME;
+const RENDER = location.hash === '#render';
+const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const TOUCH = matchMedia('(pointer:coarse)').matches;
+if (RENDER) document.body.classList.add('render');
+
+/* ---------- constants ---------- */
+const NS = 9, S = 12, D = 7;               // stations, spacing, camera distance
+const PINK = '#FEC2FE';
+const NAMES = ['Reunion presents','Cover','Bio','Production references','Gallery','DJ sets','Experience','Play set','Contact'];
+const LINKS = {
+  ready:'https://open.spotify.com/intl-de/track/7cZH5xrdkxOqBSAbygeix0',
+  maka:'https://open.spotify.com/intl-de/track/62FvBsjcQbZTZdHm2TPH2r',
+  dg:'https://open.spotify.com/intl-de/track/1VzFf43TrhqVgFTlSFjLJS',
+  splash:'https://www.instagram.com/splashfestival/',
+  vicinity:'https://www.instagram.com/vicinity_de/',
+  mtv:'https://www.instagram.com/mtvgermany',
+  splashExp:'https://www.instagram.com/reel/DMDp2OrosUx/',
+  vicinityExp:'https://www.instagram.com/reel/DXuNi9TCP6k/',
+  set:'https://untitled.stream/library/project/GNCYf44wZF8Yb3Lrtpuew'
+};
+/* gallery: the photos from page 4 of the deck go here (file names in assets/) */
+const GALLERY = ['stage.jpg','portrait.jpg'];
+
+const clamp = (v,a=0,b=1) => Math.min(b, Math.max(a, v));
+const sstep = (a,b,v) => { const t = clamp((v-a)/(b-a)); return t*t*(3-2*t); };
+const lerp = (a,b,t) => a + (b-a)*t;
+const objZ = i => -S*i;
+const camZ = i => -S*i + D;
+
+/* ---------- renderer ---------- */
+const canvas = document.getElementById('gl');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, powerPreference:'high-performance', preserveDrawingBuffer:RENDER });
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = TH.tone === 'none' ? THREE.NoToneMapping : THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(TH.bg);
+scene.fog = new THREE.Fog(TH.bg, TH.fogNear, TH.fogFar);
+const FOGLIN = new THREE.Color(TH.bg);
+const cam = new THREE.PerspectiveCamera(38, 1, 0.05, 70);
+scene.add(cam);
+const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(3, 5, 4); cam.add(key);
+const fillL = new THREE.PointLight(0xfec2fe, 6, 18, 2); fillL.position.set(-4, -1, -2); cam.add(fillL);
+if (TH.hemi) scene.add(new THREE.HemisphereLight(0xffffff, 0xfec2fe, TH.hemi));
+const maxAniso = renderer.capabilities.getMaxAnisotropy();
+
+/* studio environment: black room with light strips = crisp chrome */
+(function makeEnv(){
+  const s = new THREE.Scene();
+  s.add(new THREE.Mesh(new THREE.SphereGeometry(30, 32, 16), new THREE.MeshBasicMaterial({ color:0x070707, side:THREE.BackSide })));
+  const add = (w,h,x,y,z,col,k) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w,h), new THREE.MeshBasicMaterial({ color:new THREE.Color(col).multiplyScalar(k), side:THREE.DoubleSide })); m.position.set(x,y,z); m.lookAt(0,0,0); s.add(m); };
+  add(36,2.2, 0,12,5, '#ffffff', 7);
+  add(2.4,24,-13,0,8, '#ffffff', 3.4);
+  add(2.4,24, 13,0,8, '#ffffff', 3.4);
+  add(30,1.3, 0,-11,8, '#ffffff', 1.8);
+  add(16,9, 0,1,22, '#ffffff', 1.0);
+  add(10,10, 0,2,-20, PINK, 2.2);
+  add(3,14, 10,3,-9, PINK, 1.6);
+  const pm = new THREE.PMREMGenerator(renderer);
+  scene.environment = pm.fromScene(s, 0.012).texture;
+  pm.dispose();
+})();
+
+/* ---------- materials ---------- */
+const chrome = new THREE.MeshPhysicalMaterial({ color:0xffffff, metalness:1, roughness:0.07, clearcoat:1, clearcoatRoughness:0.04, envMapIntensity:1.25 });
+const chromeDark = new THREE.MeshPhysicalMaterial({ color:0x6a6a6a, metalness:1, roughness:0.22, envMapIntensity:0.9 });
+const black = new THREE.MeshPhysicalMaterial({ color:0x0b0b0c, roughness:0.35, metalness:0.1, clearcoat:0.6 });
+const pinkMat = new THREE.MeshPhysicalMaterial({ color:TH.deck, roughness:0.48, metalness:0, clearcoat:0.35, clearcoatRoughness:0.3 });
+const pinkDeep = new THREE.MeshPhysicalMaterial({ color:TH.mixer, roughness:0.5, clearcoat:0.3 });
+const white = new THREE.MeshStandardMaterial({ color:0xf3f0f3, roughness:0.6 });
+
+/* ---------- helpers ---------- */
+function pillShape(hw, hh){
+  const r = Math.min(hw, hh), ax = hw - r, ay = hh - r, s = new THREE.Shape();
+  s.moveTo(-ax, -hh); s.lineTo(ax, -hh);
+  s.absarc(ax, -ay, r, -Math.PI/2, 0, false); s.lineTo(hw, ay);
+  s.absarc(ax, ay, r, 0, Math.PI/2, false); s.lineTo(-ax, hh);
+  s.absarc(-ax, ay, r, Math.PI/2, Math.PI, false); s.lineTo(-hw, -ay);
+  s.absarc(-ax, -ay, r, Math.PI, Math.PI*1.5, false);
+  return s;
+}
+function pill(hw, hh, tube, mat){
+  const pts = pillShape(hw, hh).getSpacedPoints(260);
+  pts.pop();
+  const curve = new THREE.CatmullRomCurve3(pts.map(p => new THREE.Vector3(p.x, p.y, 0)), true, 'centripetal');
+  return new THREE.Mesh(new THREE.TubeGeometry(curve, 360, tube, 28, true), mat);
+}
+function pillPlane(hw, hh, imgAspect){
+  const geo = new THREE.ShapeGeometry(pillShape(hw, hh), 40);
+  const pos = geo.attributes.position, uv = geo.attributes.uv, fa = hw/hh;
+  let su = 1, sv = 1; if (imgAspect > fa) su = fa/imgAspect; else sv = imgAspect/fa;
+  for (let k=0; k<pos.count; k++){ const u = pos.getX(k)/(2*hw)+.5, v = pos.getY(k)/(2*hh)+.5; uv.setXY(k, .5+(u-.5)*su, .5+(v-.5)*sv); }
+  uv.needsUpdate = true; return geo;
+}
+function ctex(w, h, draw){
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  draw(c.getContext('2d'), w, h);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = maxAniso; return t;
+}
+function rr(g,x,y,w,h,r){ g.beginPath(); g.moveTo(x+r,y); g.arcTo(x+w,y,x+w,y+h,r); g.arcTo(x+w,y+h,x,y+h,r); g.arcTo(x,y+h,x,y,r); g.arcTo(x,y,x+w,y,r); g.closePath(); }
+function wrap(g, text, x, y, maxW, lh){
+  const words = text.split(' '), lines = []; let line = '';
+  for (const w of words){ const t = line ? line+' '+w : w; if (g.measureText(t).width > maxW && line){ lines.push(line); line = w; } else line = t; }
+  lines.push(line); const y0 = y - (lines.length-1)*lh/2; lines.forEach((l,i) => g.fillText(l, x, y0 + i*lh)); return lines.length;
+}
+const loader = new THREE.TextureLoader();
+const tex = url => new Promise((res, rej) => loader.load(TH.assets+url, t => { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = maxAniso; res(t); }, undefined, () => rej(new Error('Missing image: '+url))));
+const glowTex = ctex(256, 256, (g,w) => { const gr = g.createRadialGradient(w/2,w/2,0,w/2,w/2,w/2); gr.addColorStop(0,`rgba(${TH.glow},.9)`); gr.addColorStop(.35,`rgba(${TH.glow},.28)`); gr.addColorStop(1,`rgba(${TH.glow},0)`); g.fillStyle = gr; g.fillRect(0,0,w,w); });
+function glow(scale, op){ const s = new THREE.Sprite(new THREE.SpriteMaterial({ map:glowTex, transparent:true, opacity:op*TH.glowOp, depthWrite:false, blending:THREE.AdditiveBlending })); s.scale.set(scale, scale, 1); return s; }
+
+/* ---------- labels projected from 3D ---------- */
+const labelsBox = document.getElementById('labels');
+const labels = [];
+function addLabel(ch, obj, off, html, { href=null, cls='chip', anchor='center', only=null } = {}){
+  const el = document.createElement(href ? 'a' : 'div');
+  el.className = 'lb ' + cls; el.innerHTML = html;
+  if (href){ el.href = href; el.target = '_blank'; el.rel = 'noopener'; }
+  labelsBox.appendChild(el);
+  const L = { el, obj, off:new THREE.Vector3(...off), ch, anchor, only, a:-1 };
+  labels.push(L); return L;
+}
+
+/* ---------- click on 3D objects ---------- */
+const clickables = [];
+const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+function openLink(href){ const a = document.createElement('a'); a.href = href; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); }
+
+/* ---------- chapters ---------- */
+const chapters = [];
+function chapter(i){ const g = new THREE.Group(); g.position.z = objZ(i); const c = new THREE.Group(); g.add(c); scene.add(g); const ch = { i, g, c, update:()=>{}, exit:i>0 && i<NS-1, ks:1 }; chapters[i] = ch; return ch; }
+
+let mob = false;
+
+async function build(){
+  try { await Promise.race([Promise.all(['300','500','600','700','800'].map(w => document.fonts.load(w+' 40px Poppins'))), new Promise(r => setTimeout(r, 2500))]); } catch(e){}
+  const [logoT, polT, porT, ...galT] = await Promise.all([tex('reunion_logo.png'), tex('polaroid.jpg'), tex('portrait.jpg'), ...GALLERY.map(tex)]);
+
+  /* hero pill (used at start and end) */
+  function heroPill(){
+    const g = new THREE.Group();
+    g.add(pill(3.0, 1.3, 0.16, chrome));
+    const outer = pill(4.45, 2.12, 0.02, chromeDark); g.add(outer);
+    let fill = null;
+    if (TH.heroFill){ fill = new THREE.Mesh(new THREE.ShapeGeometry(pillShape(2.9, 1.2), 40), new THREE.MeshPhysicalMaterial({ color:0x080808, roughness:.3, clearcoat:.6, clearcoatRoughness:.12, envMapIntensity:.35, transparent:true })); fill.position.z = -0.03; g.add(fill); }
+    const lm = new THREE.MeshBasicMaterial({ map:logoT, transparent:true, toneMapped:false, depthWrite:false });
+    const logo = new THREE.Mesh(new THREE.PlaneGeometry(4.3, 4.3*logoT.image.height/logoT.image.width), lm);
+    logo.position.z = 0.01; g.add(logo);
+    return { g, logo, lm, outer, fill };
+  }
+
+  /* 0 · Reunion presents */
+  { const ch = chapter(0); const h = heroPill(); ch.c.add(h.g); ch.hero = h;
+    ch.update = (L,T,x) => { h.lm.opacity = 1 - sstep(.46,.62,x); if (h.fill){ h.fill.material.opacity = 1 - sstep(.44,.6,x); h.fill.visible = h.fill.material.opacity > .01; } h.g.rotation.y = Math.sin(T*.45)*.14*ch.amp; h.g.rotation.x = Math.sin(T*.33)*.05*ch.amp; h.outer.rotation.z = Math.sin(T*.2)*.02; }; }
+
+  /* 1 · Cover — the polaroid */
+  { const ch = chapter(1);
+    const ph = 3.6, pw = ph*polT.image.width/polT.image.height;
+    const front = new THREE.MeshBasicMaterial({ map:polT, toneMapped:false });
+    const pol = new THREE.Mesh(new THREE.BoxGeometry(pw, ph, 0.035), [white,white,white,white,front,white]);
+    const gl = glow(10, .5); gl.position.z = -1.8;
+    ch.c.add(gl, pol); ch.pol = pol;
+    ch.update = (L,T) => { pol.rotation.z = -0.055 + Math.sin(T*.7)*.02*ch.amp; pol.rotation.y = Math.sin(T*.35)*.2*ch.amp + (L-.5)*.25; pol.rotation.x = Math.sin(T*.5)*.04*ch.amp; pol.position.y = Math.sin(T*.8)*.05*ch.amp; }; }
+
+  /* 2 · Bio — portrait in a vertical pill, sound + set up chips */
+  { const ch = chapter(2);
+    const hw = 1.12, hh = 1.72;
+    const frame = pill(hw, hh, 0.085, chrome);
+    const photo = new THREE.Mesh(pillPlane(hw-0.05, hh-0.05, porT.image.width/porT.image.height), new THREE.MeshBasicMaterial({ map:porT, toneMapped:false }));
+    const gl = glow(8, .38); gl.position.z = -1.2;
+    const holder = new THREE.Group(); holder.add(photo, frame);
+    ch.c.add(gl, holder); ch.holder = holder;
+    const chips = [
+      ['<b>Sound</b>','chip h'], ['dark, synth, chill, analog','chip'], ['vibey &amp; experimental','chip'], ['specialized in rap / trap','chip'],
+      ['<b>Set up</b>','chip h'], ['Ableton','chip w'], ['FL Studio','chip w']
+    ];
+    ch.chips = chips.map(([t,c]) => addLabel(2, holder, [0,0,0], t, { cls:c, anchor:'left', only:'desk' }));
+    addLabel(2, holder, [0, 2.55, .15], '<div class="chipblock">' + chips.map(([t,c]) => `<span class="${c}">${t}</span>`).join('') + '</div>', { cls:'', only:'mob' });
+    ch.layoutChips = () => {
+      const P = [[1.55,1.45],[1.55,1.02],[1.55,.6],[1.55,.18],[1.55,-.55],[1.55,-.97],[1.55,-1.39]];
+      ch.chips.forEach((L,k) => L.off.set(P[k][0], P[k][1], 0.15));
+    };
+    ch.update = (L,T) => { holder.rotation.y = Math.sin(T*.4)*.16*ch.amp + (L-.5)*.3; holder.rotation.z = Math.sin(T*.55)*.02*ch.amp; holder.position.y = Math.sin(T*.7)*.04*ch.amp; }; }
+
+  /* 3 · Production references — vinyls slide out of their sleeves and spin */
+  { const ch = chapter(3);
+    const tracks = [
+      { t:"I'M READY", sub:"SYNC DEAL · WARNER CHAPPELL · WOMEN'S BASKETBALL WORLD CUP GERMANY 2026", href:LINKS.ready },
+      { t:'MAKA MIT LIPTON', sub:'', href:LINKS.maka },
+      { t:'DOLCE & GABBANA', sub:'', href:LINKS.dg }
+    ];
+    const sleeveTex = tr => ctex(1024, 1024, (g,w,h) => {
+      g.fillStyle = '#0c0b0d'; g.fillRect(0,0,w,h);
+      const gr = g.createLinearGradient(0,0,w,h); gr.addColorStop(0,'rgba(255,255,255,.07)'); gr.addColorStop(.55,'rgba(255,255,255,0)'); gr.addColorStop(1,'rgba(254,194,254,.16)'); g.fillStyle = gr; g.fillRect(0,0,w,h);
+      g.strokeStyle = PINK; g.lineWidth = 5; rr(g, 70, 70, w-140, 120, 60); g.stroke();
+      g.fillStyle = PINK; g.font = '600 40px Poppins'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('PRODUCTION REFERENCE', w/2, 132);
+      g.fillStyle = '#ffffff'; g.font = '800 132px Poppins'; wrap(g, tr.t, w/2, h*.5, w-150, 128);
+      if (tr.sub){ g.fillStyle = 'rgba(254,194,254,.9)'; g.font = '600 32px Poppins'; wrap(g, tr.sub, w/2, h-150, w-180, 44); }
+      else { g.fillStyle = 'rgba(255,255,255,.55)'; g.font = '500 34px Poppins'; g.fillText('PROD. CAZEY', w/2, h-130); }
+    });
+    const vinylTex = label => ctex(1024, 1024, (g,w) => {
+      const c = w/2; g.fillStyle = '#060606'; g.beginPath(); g.arc(c,c,c,0,7); g.fill();
+      for (let r = c-10; r > c*.36; r -= 4){ g.strokeStyle = (Math.floor(r/4)%3===0) ? 'rgba(255,255,255,.06)' : 'rgba(0,0,0,.6)'; g.lineWidth = 1.6; g.beginPath(); g.arc(c,c,r,0,7); g.stroke(); }
+      g.strokeStyle = 'rgba(255,255,255,.08)'; g.lineWidth = 6; [c*.62, c*.8].forEach(r => { g.beginPath(); g.arc(c,c,r,0,7); g.stroke(); });
+      g.fillStyle = PINK; g.beginPath(); g.arc(c,c,c*.34,0,7); g.fill();
+      g.fillStyle = '#1a0a1a'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = '800 46px Poppins'; wrap(g, label, c, c-34, c*.5, 48);
+      g.font = '600 24px Poppins'; g.fillText('CAZEY', c, c+92);
+      g.fillStyle = '#050505'; g.beginPath(); g.arc(c,c,13,0,7); g.fill();
+    });
+    ch.items = tracks.map((tr, k) => {
+      const grp = new THREE.Group();
+      const sl = new THREE.Mesh(new THREE.BoxGeometry(1.75,1.75,0.035), [black,black,black,black,new THREE.MeshPhysicalMaterial({ map:sleeveTex(tr), roughness:.42, clearcoat:.7, clearcoatRoughness:.2 }),black]);
+      const vt = vinylTex(tr.t);
+      const side = new THREE.MeshStandardMaterial({ color:0x080808, roughness:.4 });
+      const vin = new THREE.Mesh(new THREE.CylinderGeometry(.82,.82,.012,96), [side, new THREE.MeshPhysicalMaterial({ map:vt, roughness:.3, metalness:.15, clearcoat:1, clearcoatRoughness:.08 }), side]);
+      vin.rotation.x = Math.PI/2; const vHolder = new THREE.Group(); vHolder.add(vin); vHolder.position.z = -0.03;
+      grp.add(vHolder, sl);
+      grp.userData.href = tr.href; clickables.push({ obj:grp, ch:3, href:tr.href });
+      ch.c.add(grp);
+      const lab = addLabel(3, grp, [0,-1.08,0.1], (tr.t==="I'M READY" ? "I'm Ready" : tr.t==='MAKA MIT LIPTON' ? 'Maka mit Lipton' : 'Dolce &amp; Gabbana') + ' ↗', { href:tr.href, cls:'tag', only:'desk' });
+      return { grp, sl, vin, vHolder, lab };
+    });
+    ch.update = (L,T) => {
+      ch.items.forEach((it, k) => {
+        const n = ch.items.length, sp = mob ? 1.95 : 1.5;
+        it.grp.position.set((k-(n-1)/2)*sp, (mob ? -0.25 : -0.35) + (k===1?0.12:0), -Math.abs(k-1)*0.45);
+        it.grp.rotation.y = (k-1)*(mob ? -0.12 : -0.28) + Math.sin(T*.4+k)*.04*ch.amp;
+        const out = sstep(.06 + k*.16, .36 + k*.16, L);
+        it.vHolder.position.y = out*0.98; it.vHolder.position.x = out*0.06;
+        it.vin.rotation.y = -T*(0.6 + out*2.6);
+      });
+    }; }
+
+  /* 4 · Gallery */
+  { const ch = chapter(4);
+    ch.prints = galT.map((t, k) => {
+      const a = t.image.width/t.image.height;
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map:t, toneMapped:false, side:THREE.DoubleSide }));
+      const border = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshStandardMaterial({ color:0x111111, roughness:.6 })); border.position.z = -0.01;
+      const p = new THREE.Group(); p.add(border, m); ch.c.add(p); return { p, m, border, a };
+    });
+    const gl = glow(9, .22); gl.position.z = -2; ch.c.add(gl);
+    ch.update = (L,T) => {
+      const n = ch.prints.length, cols = mob ? Math.min(n, 2) : Math.min(n, 4), rows = Math.ceil(n/cols);
+      const BW = mob ? 3.3 : 4.6, BH = mob ? 3.9 : 3.9, cw = BW/cols, chh = BH/rows;
+      ch.prints.forEach((pr, k) => {
+        const cx = k % cols, cy = Math.floor(k/cols);
+        let w = cw*.9, h = w/pr.a; if (h > chh*.9){ h = chh*.9; w = h*pr.a; }
+        pr.m.scale.set(w, h, 1); pr.border.scale.set(w+.06, h+.06, 1);
+        const gx = (cx-(cols-1)/2)*cw, gy = ((rows-1)/2-cy)*chh;
+        pr.p.position.set(gx + (cy%2?1:-1)*(L-.5)*.3, gy + Math.sin(T*.6+k)*.04*ch.amp, (k%2?-.35:.15) + Math.sin(T*.4+k*2)*.08*ch.amp);
+        pr.p.rotation.set(0, (cx-(cols-1)/2)*-.12 + (L-.5)*.18, (k%2?1:-1)*.03);
+      });
+    }; }
+
+  /* 5 · DJ sets — accreditation badges on lanyards */
+  { const ch = chapter(5);
+    const sets = [
+      { ev:'SPLASH FESTIVAL', place:'GERMANY', date:'JUL 2025', band:PINK, ink:'#140914', strap:PINK, href:LINKS.splash },
+      { ev:'VICINITY POP-UP', place:'ITALY', date:'APR 2026', band:'#0b0b0c', ink:PINK, strap:'#141414', href:LINKS.vicinity },
+      { ev:'MTV PARTY', place:'GERMANY', date:'SEP 2025', band:'#d9d9de', ink:'#0b0b0c', strap:'#e9e9ee', href:LINKS.mtv }
+    ];
+    const badgeTex = s => ctex(640, 920, (g,w,h) => {
+      rr(g, 0, 0, w, h, 48); g.fillStyle = '#f6f3f6'; g.fill(); g.save(); g.clip();
+      g.fillStyle = s.band; g.fillRect(0,0,w,330);
+      if (s.band === '#d9d9de'){ const gr = g.createLinearGradient(0,0,w,330); gr.addColorStop(0,'#f5f5f7'); gr.addColorStop(.45,'#a9a9b0'); gr.addColorStop(.7,'#eeeef2'); gr.addColorStop(1,'#8d8d94'); g.fillStyle = gr; g.fillRect(0,0,w,330); }
+      g.fillStyle = s.ink; g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = '800 70px Poppins'; wrap(g, s.ev, w/2, 205, w-90, 72);
+      g.fillStyle = '#140914'; g.font = '800 92px Poppins'; g.fillText('DJ SET', w/2, 452);
+      g.font = '600 34px Poppins'; g.fillStyle = '#6d6470'; g.fillText('CAZEY', w/2, 530);
+      g.fillStyle = PINK; rr(g, 70, 590, w-140, 6, 3); g.fill();
+      g.fillStyle = '#140914'; g.font = '700 46px Poppins'; g.fillText(s.place, w/2, 668);
+      g.font = '500 38px Poppins'; g.fillStyle = '#6d6470'; g.fillText(s.date, w/2, 728);
+      g.fillStyle = '#140914'; for (let k=0; k<46; k++){ const bw = (k*7)%5===0 ? 6 : 3; g.fillRect(110 + k*9.4, 780, bw, 70); }
+      g.restore();
+      g.globalCompositeOperation = 'destination-out'; rr(g, w/2-80, 38, 160, 30, 15); g.fill(); g.globalCompositeOperation = 'source-over';
+    });
+    ch.badges = sets.map((s, k) => {
+      const pivot = new THREE.Group();
+      const bw = 1.25, bh = bw*920/640;
+      const badge = new THREE.Mesh(new THREE.PlaneGeometry(bw, bh), new THREE.MeshPhysicalMaterial({ map:badgeTex(s), transparent:true, alphaTest:.5, roughness:.32, clearcoat:1, clearcoatRoughness:.08, side:THREE.DoubleSide }));
+      const L0 = 3.6; badge.position.y = -L0 - bh/2;
+      const strapMat = new THREE.MeshStandardMaterial({ color:s.strap, roughness:.7, side:THREE.DoubleSide });
+      [-1, 1].forEach(sd => { const len = L0 + 0.6; const st = new THREE.Mesh(new THREE.PlaneGeometry(0.13, len), strapMat); const ang = sd*0.09; st.position.set(Math.sin(ang)*len/2 + sd*0.02, -L0 + len/2 - 0.02, -0.01); st.rotation.z = -ang; pivot.add(st); });
+      const clip = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.2, 0.06), chrome); clip.position.y = -L0 + 0.02; pivot.add(clip);
+      const holder = new THREE.Group(); holder.add(badge); pivot.add(holder);
+      ch.c.add(pivot);
+      clickables.push({ obj:pivot, ch:5, href:s.href });
+      return { pivot, holder, badge, bh, L0 };
+    });
+    ch.update = (L,T) => {
+      ch.badges.forEach((b, k) => {
+        const sp = mob ? 0.95 : 1.55;
+        b.pivot.position.set((k-1)*sp, 3.9 + (k===1 ? 0.18 : -0.08) - (mob ? 0.25 : 0), k===1 ? 0.25 : -0.2);
+        b.pivot.rotation.z = Math.sin(T*1.05 + k*1.7)*.035*ch.amp + (L-.5)*(k-1)*.06;
+        b.holder.rotation.y = Math.sin(T*.6 + k)*.28*ch.amp;
+      });
+    }; }
+
+  /* 6 · Experience — two reel-shaped pills */
+  { const ch = chapter(6);
+    const vert = 'varying vec2 vUv; varying float vD; void main(){ vUv = uv; vec4 mv = modelViewMatrix*vec4(position,1.0); vD = -mv.z; gl_Position = projectionMatrix*mv; }';
+    const frag = `uniform float uT; uniform float uSeed; uniform vec3 uA; uniform vec3 uB; uniform vec3 uFog; varying vec2 vUv; varying float vD;
+      void main(){ vec2 p = vUv; float t = uT*.55 + uSeed;
+        float w = sin(p.y*5.0 + t*1.4 + sin(p.x*3.5 - t)*1.6)*.5+.5;
+        float w2 = sin((p.x*2.0 - p.y*3.0)*2.4 - t*1.1)*.5+.5;
+        vec3 a = uA, b = uB, c = vec3(1.0,0.86,1.0);
+        vec3 col = mix(b, a, smoothstep(.15,.95,w*.75+w2*.35));
+        col = mix(col, c, pow(w2,6.0)*.35);
+        col *= .55 + .45*smoothstep(1.1,.15,length(p-vec2(.5,.45))*1.4);
+        col = mix(col, uFog, smoothstep(${TH.fogNear.toFixed(1)}, ${TH.fogFar.toFixed(1)}, vD));
+        gl_FragColor = vec4(col,1.0);
+        #include <colorspace_fragment>
+      }`;
+    const exps = [{ name:'SPLASH', href:LINKS.splashExp, seed:0 }, { name:'VICINITY', href:LINKS.vicinityExp, seed:3.1 }];
+    const overlayTex = name => ctex(512, 900, (g,w,h) => {
+      g.textAlign = 'center'; g.textBaseline = 'middle';
+      g.fillStyle = 'rgba(255,255,255,.95)'; g.beginPath(); g.arc(w/2, h*.42, 74, 0, 7); g.fill();
+      g.fillStyle = '#140914'; g.beginPath(); g.moveTo(w/2-22, h*.42-34); g.lineTo(w/2+38, h*.42); g.lineTo(w/2-22, h*.42+34); g.closePath(); g.fill();
+      g.fillStyle = '#ffffff'; g.font = '600 30px Poppins'; g.fillText('TAP TO SEE', w/2, h*.62);
+      g.font = '800 64px Poppins'; g.fillText(name, w/2, h*.69); g.font = '600 30px Poppins'; g.fillText('EXPERIENCE', w/2, h*.755);
+    });
+    ch.items = exps.map((e, k) => {
+      const hw = .78, hh = 1.4, grp = new THREE.Group();
+      const mat = new THREE.ShaderMaterial({ uniforms:{ uT:{ value:0 }, uSeed:{ value:e.seed }, uA:{ value:new THREE.Vector3(...TH.expA) }, uB:{ value:new THREE.Vector3(...TH.expB) }, uFog:{ value:new THREE.Vector3(FOGLIN.r, FOGLIN.g, FOGLIN.b) } }, vertexShader:vert, fragmentShader:frag, toneMapped:false });
+      const panel = new THREE.Mesh(pillPlane(hw-.03, hh-.03, 1), mat);
+      const geoO = pillPlane(hw-.03, hh-.03, 512/900);
+      const over = new THREE.Mesh(geoO, new THREE.MeshBasicMaterial({ map:overlayTex(e.name), transparent:true, toneMapped:false, depthWrite:false })); over.position.z = 0.01;
+      grp.add(panel, over, pill(hw, hh, 0.055, chrome));
+      ch.c.add(grp); clickables.push({ obj:grp, ch:6, href:e.href });
+      return { grp, mat };
+    });
+    ch.update = (L,T) => { ch.items.forEach((it, k) => { const sd = k ? 1 : -1; it.grp.position.set(sd*(mob ? .86 : 1.05), (k ? -.12 : .12) + Math.sin(T*.7+k*2)*.05*ch.amp, 0); it.grp.rotation.y = -sd*(.22 + (L-.5)*.2); it.mat.uniforms.uT.value = T; }); }; }
+
+  /* 7 · Play set — pink decks and mixer */
+  { const ch = chapter(7);
+    const rig = new THREE.Group();
+    const labelT = ctex(1024, 1024, (g,w) => {
+      const c = w/2; g.fillStyle = '#060606'; g.beginPath(); g.arc(c,c,c,0,7); g.fill();
+      for (let r = c-10; r > c*.36; r -= 4){ g.strokeStyle = (Math.floor(r/4)%3===0) ? 'rgba(255,255,255,.06)' : 'rgba(0,0,0,.6)'; g.lineWidth = 1.6; g.beginPath(); g.arc(c,c,r,0,7); g.stroke(); }
+      g.fillStyle = PINK; g.beginPath(); g.arc(c,c,c*.34,0,7); g.fill();
+      g.fillStyle = '#1a0a1a'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = '800 54px Poppins'; g.fillText('CAZEY', c, c-38); g.font = '600 30px Poppins'; g.fillText('DJ SET', c, c+30);
+      g.fillStyle = '#050505'; g.beginPath(); g.arc(c,c,13,0,7); g.fill();
+    });
+    const side = new THREE.MeshStandardMaterial({ color:0x0a0a0a, roughness:.5 });
+    const vinMat = new THREE.MeshPhysicalMaterial({ map:labelT, roughness:.3, clearcoat:1, clearcoatRoughness:.08 });
+    const metal = new THREE.MeshStandardMaterial({ color:0x2a2a2d, metalness:.8, roughness:.35 });
+    const deck = sx => {
+      const d = new THREE.Group();
+      const base = new THREE.Mesh(new THREE.BoxGeometry(1.7, .14, 1.32), pinkMat); d.add(base);
+      const plat = new THREE.Mesh(new THREE.CylinderGeometry(.6,.6,.05,72), metal); plat.position.set(-.13,.095,0); d.add(plat);
+      const vin = new THREE.Mesh(new THREE.CylinderGeometry(.57,.57,.012,72), [side, vinMat, side]); vin.position.set(-.13,.126,0); d.add(vin);
+      const armBase = new THREE.Mesh(new THREE.CylinderGeometry(.075,.085,.08,32), chrome); armBase.position.set(.62,.11,-.46); d.add(armBase);
+      const arm = new THREE.Mesh(new THREE.CylinderGeometry(.018,.018,.92,16), chrome); arm.position.set(.48,.16,-.05); arm.rotation.set(Math.PI/2, 0, .32); d.add(arm);
+      const head = new THREE.Mesh(new THREE.BoxGeometry(.09,.04,.16), chrome); head.position.set(.34,.15,.38); head.rotation.y = .32; d.add(head);
+      const btn = new THREE.Mesh(new THREE.BoxGeometry(.2,.03,.12), pinkDeep); btn.position.set(-.62,.085,.52); d.add(btn);
+      const slot = new THREE.Mesh(new THREE.BoxGeometry(.06,.02,.5), metal); slot.position.set(.68,.08,.22); d.add(slot);
+      const fad = new THREE.Mesh(new THREE.BoxGeometry(.12,.05,.08), chrome); fad.position.set(.68,.1,.18); d.add(fad);
+      d.position.x = sx; rig.add(d); return vin;
+    };
+    const vL = deck(-1.3), vR = deck(1.3);
+    const mixer = new THREE.Group();
+    mixer.add(new THREE.Mesh(new THREE.BoxGeometry(.78, .18, 1.32), pinkDeep));
+    for (let r=0; r<4; r++) for (let c=0; c<2; c++){ const k = new THREE.Mesh(new THREE.CylinderGeometry(.055,.06,.07,24), chrome); k.position.set(c ? .17 : -.17, .12, -.5 + r*.2); mixer.add(k); }
+    [-.17, .17].forEach(x => { const sl = new THREE.Mesh(new THREE.BoxGeometry(.04,.02,.32), metal); sl.position.set(x,.095,.36); mixer.add(sl); const f = new THREE.Mesh(new THREE.BoxGeometry(.11,.05,.07), chrome); f.position.set(x,.11,.3); mixer.add(f); });
+    const xf = new THREE.Mesh(new THREE.BoxGeometry(.4,.02,.04), metal); xf.position.set(0,.095,.58); mixer.add(xf);
+    rig.add(mixer);
+    rig.rotation.x = .82;
+    const gl = glow(9, .35); gl.position.z = -1.5;
+    ch.c.add(gl, rig); ch.rig = rig;
+    clickables.push({ obj:rig, ch:7, href:LINKS.set });
+    addLabel(7, rig, [0, .9, -.7], '▶ Tap to play set', { href:LINKS.set, cls:'tag big' });
+    ch.update = (L,T) => { vL.rotation.y = -T*3.49; vR.rotation.y = -T*3.49 + 1.3; rig.rotation.y = Math.sin(T*.35)*.12*ch.amp + (L-.5)*.25; rig.position.y = mob ? -.05 : -.15; }; }
+
+  /* 8 · Closing — back to the pill */
+  { const ch = chapter(8); const h = heroPill(); ch.c.add(h.g); ch.hero = h;
+    const gl = glow(12, .22); gl.position.z = -2.5; ch.c.add(gl);
+    ch.update = (L,T) => { h.g.rotation.y = Math.sin(T*.45)*.14*ch.amp; h.g.rotation.x = Math.sin(T*.33)*.05*ch.amp; }; }
+
+  /* portals between chapters: the pill you fly through */
+  for (let k=1; k<NS-1; k++){ const p = pill(3.5, 1.62, 0.085, chrome); p.position.z = objZ(k) - 3.6; scene.add(p); chapters[k].portal = p; }
+
+  /* dust along the tunnel */
+  { const n = 1100, a = new Float32Array(n*3);
+    for (let k=0; k<n; k++){ a[k*3] = (Math.random()-.5)*14; a[k*3+1] = (Math.random()-.5)*9; a[k*3+2] = 10 - Math.random()*118; }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(a, 3));
+    const dot = ctex(64, 64, (c,w) => { const gr = c.createRadialGradient(w/2,w/2,0,w/2,w/2,w/2); gr.addColorStop(0,'rgba(255,255,255,1)'); gr.addColorStop(.5,'rgba(255,255,255,.5)'); gr.addColorStop(1,'rgba(255,255,255,0)'); c.fillStyle = gr; c.fillRect(0,0,w,w); });
+    scene.add(new THREE.Points(g, new THREE.PointsMaterial({ color:TH.dust, map:dot, size:.04, sizeAttenuation:true, transparent:true, opacity:TH.dustOp, depthWrite:false }))); }
+}
+
+/* ---------- layout ---------- */
+let W = 1, H = 1;
+const OFF_D = [[0,.08],[-.15,0],[-.15,0],[-.15,0],[-.15,0],[-.15,0],[-.15,0],[-.15,0],[0,.2]];
+const OFF_M = [[0,.13],[0,.17],[0,.16],[0,.17],[0,.17],[0,.18],[0,.17],[0,.17],[0,.2]];
+function resize(){
+  W = innerWidth; H = innerHeight; mob = W < 760 || W/H < 0.9;
+  document.documentElement.classList.toggle('mob', mob);
+  renderer.setPixelRatio(Math.min(devicePixelRatio, mob ? 1.75 : 2));
+  renderer.setSize(W, H, false);
+  cam.aspect = W/H; cam.fov = mob ? 60 : (W/H < 1.25 ? 46 : 38); cam.updateProjectionMatrix();
+  const KS = mob ? [.56,.62,.6,.5,.62,.62,.6,.6,.5] : [.86,1,1,1,1,1,1,1,.7];
+  const kf = mob ? Math.min(1.3, Math.max(1, (W/H)/0.5)) : 1;
+  chapters.forEach((ch,i) => { if (ch){ ch.ks = KS[i]*kf; ch.c.scale.setScalar(ch.ks); if (ch.layoutChips) ch.layoutChips(); } });
+}
+
+/* ---------- per-frame ---------- */
+const cards = [...document.querySelectorAll('.card')];
+const cardState = cards.map(() => -1);
+const chn = document.getElementById('chn'), chl = document.getElementById('chl'), barfill = document.getElementById('barfill');
+let lastCh = -1;
+const ptr = { x:0, y:0, sx:0, sy:0 };
+const v3 = new THREE.Vector3();
+
+function cardAlpha(i, x){ const a = i === 0 ? 1 : sstep(i-.2, i-.05, x); const b = i === NS-1 ? 1 : 1 - sstep(i+.42, i+.56, x); return a*b; }
+function objAlpha(i, x){ const a = i === 0 ? 1 : sstep(i-.25, i-.05, x); const b = i === NS-1 ? 1 : 1 - sstep(i+.4, i+.52, x); return a*b; }
+
+function update(P, T){
+  const x = clamp(P)*(NS-1);
+  const seg = Math.min(NS-2, Math.floor(x)), f = x - seg, m = sstep(.42, 1, f);
+  const amp = REDUCE ? .15 : 1;
+  /* camera */
+  ptr.sx += (ptr.x - ptr.sx)*.06; ptr.sy += (ptr.y - ptr.sy)*.06;
+  const px = RENDER || TOUCH ? 0 : ptr.sx, py = RENDER || TOUCH ? 0 : ptr.sy;
+  cam.position.set(px*.22, -py*.14, lerp(camZ(seg), camZ(seg+1), m));
+  cam.rotation.set(py*.018, -px*.03, (REDUCE ? 0 : Math.sin(Math.PI*m)*.06*(seg%2 ? 1 : -1)));
+  const OFF = mob ? OFF_M : OFF_D, o0 = OFF[seg], o1 = OFF[seg+1];
+  cam.setViewOffset(W, H, lerp(o0[0], o1[0], m)*W, lerp(o0[1], o1[1], m)*H, W, H);
+  /* chapters */
+  chapters.forEach((ch, i) => {
+    const xi = x - i, vis = xi > -0.62 && xi < (i === NS-1 ? 9 : 1.0);
+    ch.g.visible = vis; if (ch.portal) ch.portal.visible = xi > -1.2 && xi < 1.2;
+    if (!vis) return;
+    ch.amp = amp;
+    const L = clamp((xi + .1)/.55);
+    if (ch.exit){ const e = sstep(.38, .7, xi); if (mob){ ch.c.position.set(0, 7*e*e, 0); } else { ch.c.position.set(9*e*e, 0, 0); } ch.c.rotation.y = e*.8; }
+    ch.update(L, T, x);
+  });
+  /* cards */
+  cards.forEach((el, i) => {
+    const a = Math.round(cardAlpha(i, x)*100)/100;
+    if (a === cardState[i]) return; cardState[i] = a;
+    el.style.opacity = a; el.style.visibility = a > .01 ? 'visible' : 'hidden';
+    el.style.pointerEvents = a > .6 ? 'auto' : 'none';
+    const dy = (1-a)*16;
+    el.style.transform = el.classList.contains('center') ? (mob ? `translateY(${dy}px)` : `translate(-50%, ${dy}px)`) : (mob ? `translateY(${dy}px)` : `translateY(calc(-50% + ${dy}px))`);
+  });
+  /* labels */
+  cam.updateMatrixWorld(true); scene.updateMatrixWorld(true);
+  labels.forEach(L => {
+    const a = (L.only === 'mob' && !mob) || (L.only === 'desk' && mob) ? 0 : Math.round(objAlpha(L.ch, x)*100)/100;
+    if (a <= .01){ if (L.a !== 0){ L.el.style.opacity = 0; L.el.style.visibility = 'hidden'; L.a = 0; } return; }
+    v3.copy(L.off); L.obj.localToWorld(v3); v3.project(cam);
+    const sx = (v3.x*.5+.5)*W, sy = (-v3.y*.5+.5)*H;
+    L.el.style.transform = L.anchor === 'left' ? `translate(${sx.toFixed(1)}px,${sy.toFixed(1)}px) translate(0,-50%)` : `translate(${sx.toFixed(1)}px,${sy.toFixed(1)}px) translate(-50%,-50%)`;
+    if (a !== L.a){ L.el.style.opacity = a; L.el.style.visibility = 'visible'; L.el.style.pointerEvents = a > .6 ? 'auto' : 'none'; L.a = a; }
+  });
+  /* header */
+  const ci = Math.round(x);
+  if (ci !== lastCh){ lastCh = ci; chn.textContent = String(ci).padStart(2,'0'); chl.textContent = NAMES[ci]; }
+  barfill.style.transform = `scaleX(${clamp(P).toFixed(4)})`;
+}
+
+/* ---------- start ---------- */
+let P = 0, Ps = 0;
+function pick(e){
+  const r = canvas.getBoundingClientRect();
+  ndc.set(((e.clientX - r.left)/r.width)*2 - 1, -((e.clientY - r.top)/r.height)*2 + 1);
+  ray.setFromCamera(ndc, cam);
+  const x = Ps*(NS-1);
+  for (const c of clickables){ if (objAlpha(c.ch, x) < .6) continue; if (ray.intersectObject(c.obj, true).length) return c; }
+  return null;
+}
+
+build().then(() => {
+  resize();
+  addEventListener('resize', resize);
+  if (RENDER){
+    window.__seek = (t, p) => { update(p, t); renderer.render(scene, cam); };
+    window.__seek(0, 0); window.__listo = true;
+  } else {
+    gsap.registerPlugin(ScrollTrigger);
+    const lenis = new Lenis({ lerp:REDUCE ? 1 : .085, smoothWheel:!REDUCE, wheelMultiplier:.9 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
+    ScrollTrigger.create({ trigger:'#track', start:'top top', end:'bottom bottom', onUpdate:s => { P = s.progress; } });
+    addEventListener('pointermove', e => { ptr.x = e.clientX/W*2 - 1; ptr.y = e.clientY/H*2 - 1; const hit = !TOUCH && e.target === canvas && pick(e); canvas.style.cursor = hit ? 'pointer' : ''; }, { passive:true });
+    canvas.addEventListener('click', e => { const hit = pick(e); if (hit) openLink(hit.href); });
+    const t0 = performance.now();
+    gsap.ticker.add(() => {
+      Ps += (P - Ps)*(TOUCH ? .16 : 1);
+      if (Math.abs(P - Ps) < 1e-5) Ps = P;
+      update(Ps, (performance.now() - t0)/1000);
+      renderer.render(scene, cam);
+    });
+  }
+  const ld = document.getElementById('loader'); if (RENDER) ld.remove(); else { ld.style.opacity = 0; setTimeout(() => ld.remove(), 900); }
+}).catch(e => fail(e.message || String(e)));
+</script>
+</body>
+</html>
