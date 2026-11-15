@@ -406,7 +406,7 @@ async function build(){
       ['<b>Set up</b>','chip h'], ['Ableton','chip w'], ['FL Studio','chip w']
     ];
     ch.chips = chips.map(([t,c]) => addLabel(2, holder, [0,0,0], t, { cls:c, anchor:'left', only:'desk' }));
-    addLabel(2, holder, [0, 2.55, .15], '<div class="chipblock">' + chips.map(([t,c]) => `<span class="${c}">${t}</span>`).join('') + '</div>', { cls:'', only:'mob' });
+    addLabel(2, holder, [0, 2.78, .15], '<div class="chipblock">' + chips.map(([t,c]) => `<span class="${c}">${t}</span>`).join('') + '</div>', { cls:'', only:'mob' });
     ch.layoutChips = () => {
       const P = [[1.55,1.45],[1.55,1.02],[1.55,.6],[1.55,.18],[1.55,-.55],[1.55,-.97],[1.55,-1.39]];
       ch.chips.forEach((L,k) => L.off.set(P[k][0], P[k][1], 0.15));
